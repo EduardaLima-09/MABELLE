@@ -1,0 +1,106 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(50, 21, 29, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(197, 164, 109, 0.2);
+}
+
+.navContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.logoImg {
+  height: 34px;
+  width: auto;
+  display: block;
+}
+
+.navLinks {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+  margin: 0 0 0 auto;
+  padding: 0;
+}
+
+.navLinks a {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--nude);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navLinks a:hover {
+  color: var(--gold);
+}
+
+.cartBtn {
+  position: relative;
+  color: var(--nude);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartBtn:hover {
+  color: var(--gold);
+}
+
+.cartCount {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--wine);
+  font-size: 0.65rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  .navContent {
+    height: 60px;
+    padding: 0 16px;
+  }
+
+  .logoImg {
+    height: 28px;
+  }
+
+  .navLinks {
+    gap: 20px;
+  }
+
+  .navLinks a {
+    font-size: 0.75rem;
+  }
+}

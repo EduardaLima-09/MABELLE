@@ -1,0 +1,95 @@
+.filtersArea {
+  background: var(--off-white);
+  padding: 40px 24px 32px;
+  border-bottom: 1px solid rgba(197, 164, 109, 0.2);
+}
+
+.filters {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--wine);
+  background: #fff;
+  border: 1px solid rgba(197, 164, 109, 0.4);
+  padding: 10px 16px;
+  width: 220px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.searchInput::placeholder {
+  color: var(--burgundy);
+  opacity: 0.6;
+}
+
+.searchInput:focus {
+  border-color: var(--gold);
+}
+
+.select {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--wine);
+  background: #fff;
+  border: 1px solid rgba(197, 164, 109, 0.4);
+  padding: 10px 14px;
+  cursor: pointer;
+  outline: none;
+}
+
+.select:focus {
+  border-color: var(--gold);
+}
+
+.favBtn,
+.clearBtn {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  cursor: pointer;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--burgundy);
+  transition: all 0.3s ease;
+}
+
+.favBtn:hover,
+.clearBtn:hover {
+  background: var(--gold);
+  color: var(--off-white);
+}
+
+.favBtnActive {
+  background: var(--burgundy);
+  color: var(--off-white);
+  border-color: var(--burgundy);
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .searchInput,
+  .select,
+  .favBtn,
+  .clearBtn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
