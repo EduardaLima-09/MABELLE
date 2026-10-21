@@ -1,121 +1,144 @@
-# MABELLE — Beleza que expressa você
+ <div align="center">
 
-## Integrantes
+  <img src="https://github.com/EduardaLima-09/MABELLE/blob/main/MabelleReadme.png?raw=true" alt="MABELLE — Beleza que expressa você" width="850">
 
-- Maria Eduarda Lima
+  <br>
 
-## Sobre o produto
+  # M A B E L L E
 
-A **MABELLE** é uma marca fictícia criada para apresentar uma experiência de compra de produtos capilares por meio de uma landing page desenvolvida com React.
+  **BELEZA QUE EXPRESSA VOCÊ**
 
-A proposta é reunir produtos como wigs, laces e outros itens relacionados a cabelos em uma interface visualmente elegante, intuitiva e responsiva.
+  *Elegância em cada detalhe. Confiança em cada escolha.*
 
-O público-alvo são pessoas interessadas em produtos capilares que valorizam a praticidade na escolha dos produtos, a apresentação visual e uma experiência de navegação agradável.
+  <br>
 
-O objetivo do projeto é apresentar a identidade da marca, destacar seus produtos e benefícios e simular uma experiência de compra por meio de elementos interativos.
+  `REACT` &nbsp; `JAVASCRIPT` &nbsp; `CSS MODULES` &nbsp; `VITE`
 
-## Jornada de construção
+</div>
 
-### 1. Ideia inicial
+---
 
-A ideia surgiu da proposta da atividade de desenvolver uma landing page para apresentar e vender um produto fictício.
+## ✦ A marca
 
-Escolhemos explorar o segmento de produtos capilares e desenvolver a MABELLE como conceito de marca. A proposta visual foi direcionada para uma identidade elegante, moderna e sofisticada, buscando valorizar os produtos e tornar a navegação agradável.
+A **MABELLE** é uma marca fictícia de produtos capilares criada para apresentar uma experiência de compra digital elegante, intuitiva e contemporânea.
 
-Durante o desenvolvimento, a proposta visual e a organização das seções foram sendo ajustadas para aproximar a página da experiência de uma loja virtual.
+Com foco em wigs, laces e outros produtos relacionados à beleza capilar, a marca busca unir sofisticação, praticidade e uma apresentação visual que valorize cada produto.
 
-### 2. Pesquisa e referências
+Mais do que apresentar um catálogo, a proposta é transmitir uma identidade própria e criar uma experiência de navegação agradável, na qual cada detalhe contribua para a percepção da marca.
 
-Durante a construção, buscamos referências para orientar as decisões de identidade visual, apresentação de produtos e organização das informações.
+**Conceito:** beleza, autenticidade e sofisticação.
 
-Os aspectos considerados incluem:
+**Público-alvo:** pessoas interessadas em produtos capilares que valorizam a praticidade, a qualidade visual e uma experiência de compra intuitiva.
 
-- Organização e hierarquia das informações;
-- Apresentação visual dos produtos;
-- Combinação de cores e tipografia;
-- Organização das seções e dos elementos de navegação;
-- Experiência de compra em lojas virtuais;
-- Responsividade para diferentes tamanhos de tela.
+**Objetivo do projeto:** desenvolver uma landing page responsiva, com identidade visual própria e interações simuladas, utilizando React.
 
-**Referências consultadas:** [Adicionar os sites, páginas, marcas ou outras referências que foram realmente pesquisadas durante o projeto.]
+---
 
-### 3. Ferramentas utilizadas
+## ✦ Jornada de construção
 
-- **React:** desenvolvimento da interface por meio de componentes.
-- **JavaScript:** implementação da lógica e das interações.
-- **CSS Modules:** estilização dos componentes com estilos organizados por módulo.
-- **Vite:** configuração e execução do ambiente de desenvolvimento.
-- **Visual Studio Code:** edição e organização do código.
-- **OpenCode:** apoio ao desenvolvimento e à realização de alterações no projeto.
-- **Git e GitHub:** controle de versão e hospedagem do repositório.
+### 01. O conceito inicial
 
-[Adicionar outras ferramentas que tenham sido utilizadas efetivamente.]
+O projeto nasceu a partir da proposta acadêmica de desenvolver uma landing page para apresentar e promover um produto fictício.
 
-### 4. Uso de inteligência artificial
+A escolha do segmento capilar permitiu explorar uma experiência visual inspirada no universo da beleza premium. A partir disso, desenvolvemos a MABELLE, buscando uma identidade elegante, moderna e coerente com os produtos apresentados.
 
-A inteligência artificial foi utilizada como apoio durante o processo de desenvolvimento, auxiliando no planejamento de alterações, na elaboração de instruções para ferramentas de programação e no aprimoramento da interface.
+Durante a construção, a ideia inicial evoluiu para uma página com características de loja virtual, reunindo apresentação da marca, catálogo de produtos e elementos interativos.
 
-O uso dessas ferramentas fez parte de um processo de experimentação: as sugestões precisaram ser avaliadas conforme os objetivos da atividade, a identidade visual definida e a estrutura existente do projeto.
+### 02. Pesquisa e referências visuais
 
-**Modelos e ferramentas utilizados:**
+A construção da identidade visual considerou princípios de design e experiência do usuário, como hierarquia visual, consistência, legibilidade e organização das informações.
 
-- **ChatGPT:** apoio ao planejamento, à organização dos requisitos e à elaboração de instruções para alterações no projeto.
-- **OpenCode:** ferramenta utilizada para auxiliar na implementação e na revisão de mudanças no código.
+Os pontos explorados incluíram:
 
-Durante o processo, buscamos preservar as funcionalidades existentes e orientar as alterações para atender aos objetivos da landing page.
+- Composição visual e apresentação dos produtos;
+- Paleta de cores e tipografia;
+- Organização das categorias e dos elementos de navegação;
+- Experiência de busca e descoberta de produtos;
+- Consistência entre a identidade da marca e a interface;
+- Adaptação para diferentes tamanhos de tela.
 
-**Decisões relacionadas à IA:** [Registrar exemplos reais de sugestões aceitas, modificadas ou descartadas, incluindo situações em que o resultado precisou ser ajustado.]
+**Referências consultadas:** [inserir as marcas, sites, páginas ou materiais realmente pesquisados pela equipe].
 
-### 5. Evolução da solução
+### 03. Tecnologias e ferramentas
 
-Ao longo do desenvolvimento, a solução passou por mudanças de identidade visual e organização das seções para tornar a experiência mais coerente com a proposta da MABELLE.
+| Tecnologia | Aplicação no projeto |
+|---|---|
+| **React** | Construção da interface com componentes reutilizáveis. |
+| **JavaScript** | Lógica da aplicação e interações. |
+| **CSS Modules** | Estilização modular dos componentes. |
+| **Vite** | Ambiente de desenvolvimento e execução. |
+| **Visual Studio Code** | Edição e organização do código. |
+| **Git** | Controle de versão do projeto. |
+| **GitHub** | Hospedagem do repositório e histórico de alterações. |
+| **OpenCode** | Apoio à implementação e à revisão de alterações. |
 
-Entre os pontos trabalhados estão:
+### 04. Inteligência artificial como apoio
 
-- Definição de uma identidade visual elegante e sofisticada;
-- Ajustes na apresentação dos produtos e nas categorias;
-- Refinamento da seção principal e das demais seções da página;
-- Organização dos elementos de busca e filtragem;
-- Aprimoramento da apresentação de informações sobre a marca;
-- Inclusão e organização de perguntas frequentes e depoimentos ilustrativos;
-- Ajustes de navegação e elementos relacionados à experiência de compra.
+As ferramentas de inteligência artificial foram utilizadas como apoio ao planejamento, à organização dos requisitos e à implementação de melhorias na interface.
 
-As decisões foram orientadas pela intenção de construir uma página visualmente consistente e fácil de utilizar.
+O processo envolveu avaliar as sugestões recebidas e ajustá-las às necessidades do projeto, considerando a identidade visual, a estrutura do código e os requisitos acadêmicos.
 
-### 6. Resultado final
+**Ferramentas utilizadas:**
 
-O resultado esperado é uma landing page que apresente a identidade da MABELLE, explique sua proposta e destaque os produtos capilares em uma interface organizada e responsiva.
+- **ChatGPT:** apoio à interpretação dos requisitos, ao planejamento das melhorias e à elaboração de instruções.
+- **OpenCode:** auxílio na implementação de alterações no código.
 
-O projeto utiliza dados simulados e não depende de backend, banco de dados ou integração com APIs, conforme permitido pela atividade.
+**Avaliação das sugestões:** [adicionar exemplos reais de sugestões aceitas, adaptadas ou descartadas e explicar o motivo de cada decisão].
 
-A construção permitiu praticar o desenvolvimento de interfaces com React, a organização dos estilos com CSS Modules, a estruturação do projeto e o uso de ferramentas de apoio ao desenvolvimento.
+A utilização dessas ferramentas teve caráter de apoio. As decisões finais devem refletir a avaliação da equipe e os objetivos definidos para a solução.
+
+### 05. Evolução da experiência
+
+Ao longo do desenvolvimento, a página foi refinada para se aproximar da proposta de uma marca capilar premium.
+
+Entre os aspectos trabalhados estão:
+
+- Desenvolvimento da identidade visual da MABELLE;
+- Organização e apresentação das categorias de produtos;
+- Aprimoramento da seção principal e dos elementos de navegação;
+- Organização dos recursos de pesquisa e filtragem;
+- Inclusão de seções informativas sobre a marca;
+- Estruturação de perguntas frequentes e depoimentos ilustrativos;
+- Ajustes nos elementos relacionados à experiência de compra.
+
+Cada melhoria buscou reforçar a consistência visual e tornar a navegação mais clara e agradável.
+
+### 06. Resultado e aprendizados
+
+O resultado é uma proposta de landing page que apresenta a MABELLE por meio de uma interface visualmente consistente, com catálogo e interações simuladas.
+
+A aplicação foi desenvolvida no front-end, utilizando dados simulados, sem necessidade de backend, banco de dados ou integração com APIs.
+
+O projeto possibilitou praticar a construção de componentes React, a organização dos estilos com CSS Modules, o controle de versão e a evolução de uma interface a partir de decisões de design e desenvolvimento.
 
 **O que faríamos diferente com mais tempo?**
 
-Poderíamos aprofundar os testes de usabilidade, revisar os detalhes de acessibilidade, ampliar os testes de responsividade e aprimorar as interações da experiência de compra.
+A equipe poderia aprofundar os testes de usabilidade, ampliar a validação em diferentes dispositivos, revisar a acessibilidade e avaliar a experiência de navegação com usuários antes de consolidar a versão final.
 
-Também seria possível explorar novas alternativas de organização visual e avaliar a experiência da página com outras pessoas antes de definir a versão final.
+---
 
-## Arquitetura do projeto
+## ✦ Arquitetura
 
-**Arquitetura escolhida:** MVVM (Model-View-ViewModel).
+**Padrão arquitetural proposto: MVVM — Model, View, ViewModel.**
 
-A organização do código busca separar os dados e as regras de negócio, a interface apresentada ao usuário e a lógica que conecta essas partes.
+O MVVM busca separar responsabilidades para facilitar a organização e a manutenção do código.
 
-- **Model:** dados e regras relacionados aos produtos e às funcionalidades da aplicação.
-- **View:** componentes responsáveis pela apresentação visual.
-- **ViewModel:** lógica que organiza os dados e as ações utilizados pela interface.
+- **Model:** representa os dados e as regras relacionadas ao domínio da aplicação.
+- **View:** corresponde à interface visual apresentada ao usuário.
+- **ViewModel:** organiza a lógica e os dados utilizados pela interface.
 
-A estrutura deve ser consultada no código-fonte para identificar como essas responsabilidades foram efetivamente distribuídas.
+A distribuição efetiva dessas responsabilidades deve corresponder à estrutura implementada no código-fonte.
 
-## Como executar o projeto
+---
+
+## ✦ Como executar
 
 ### Pré-requisitos
 
-- Node.js instalado;
-- npm instalado.
+- Node.js;
+- npm.
 
-### Instalação
+### Instalação e execução
 
 ```bash
 git clone https://github.com/EduardaLima-09/MABELLE.git
@@ -124,12 +147,22 @@ npm install
 npm run dev
 ```
 
-Depois, acesse o endereço local apresentado no terminal pelo Vite.
+Após executar o projeto, acesse o endereço local indicado pelo Vite no terminal.
 
-> Observação: confirme se o repositório já foi renomeado para `MABELLE` antes de utilizar o endereço acima. Caso ainda não tenha sido, o link antigo continuará sendo necessário até a atualização.
+---
 
-## Considerações finais
+## ✦ Integrantes
 
-A MABELLE representa a aplicação dos conhecimentos de desenvolvimento front-end na criação de uma landing page com identidade visual própria e interações simuladas.
+- **Maria Eduarda Lima**
 
-Mais do que chegar a um resultado visual, o processo envolveu tomar decisões de projeto, avaliar alternativas, organizar o código e aprimorar a solução de acordo com os objetivos da atividade.
+---
+
+<div align="center">
+
+  **M A B E L L E**
+
+  *Beleza que expressa você.*
+
+  <sub>Projeto acadêmico • Desenvolvimento Front-end com React</sub>
+
+</div>
