@@ -2,9 +2,7 @@
 
   <img src="https://github.com/EduardaLima-09/MABELLE/blob/main/MabelleReadme.png?raw=true" alt="MABELLE — Beleza que expressa você" width="850">
 
-  <br>
-
-  # M A B E L L E
+  <br><br>
 
   **BELEZA QUE EXPRESSA VOCÊ**
 
