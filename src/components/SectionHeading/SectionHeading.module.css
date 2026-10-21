@@ -1,0 +1,130 @@
+.header {
+  max-width: 720px;
+  margin: 0 auto clamp(40px, 5vw, 68px);
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.left {
+  text-align: left;
+  margin-left: 0;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 18px;
+  padding-left: 0.42em;
+  opacity: 0;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.85rem, 3.4vw, 2.75rem);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.015em;
+  color: var(--wine);
+  margin: 0;
+  opacity: 0;
+}
+
+.rule {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: var(--gold);
+  margin: 22px 0;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.center .rule {
+  margin-left: auto;
+  margin-right: auto;
+  transform-origin: center;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.95;
+  color: var(--burgundy);
+  margin: 0 auto;
+  max-width: 520px;
+  opacity: 0;
+}
+
+.left .subtitle {
+  margin-left: 0;
+}
+
+/* Tons */
+.dark .title {
+  color: var(--off-white);
+}
+
+.dark .subtitle {
+  color: var(--nude);
+}
+
+/* Revelação escalonada */
+.visible .eyebrow {
+  animation: revealUp 0.8s var(--ease) 0.05s both;
+}
+
+.visible .title {
+  animation: revealUp 0.95s var(--ease) 0.12s both;
+}
+
+.visible .rule {
+  animation: revealLine 0.9s var(--ease) 0.28s both;
+}
+
+.visible .subtitle {
+  animation: revealUp 0.9s var(--ease) 0.34s both;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealLine {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 0.75;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .eyebrow {
+    font-size: 0.6rem;
+    letter-spacing: 0.34em;
+    margin-bottom: 14px;
+  }
+
+  .rule {
+    margin: 18px 0;
+  }
+}

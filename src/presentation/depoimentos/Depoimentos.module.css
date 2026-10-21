@@ -1,0 +1,171 @@
+.section {
+  background: var(--off-white);
+  padding: var(--section-pad) 24px;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 8px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 38px 34px 34px;
+  text-align: left;
+  transition: border-color 0.45s var(--ease), box-shadow 0.45s var(--ease),
+    transform 0.45s var(--ease);
+}
+
+.card:hover {
+  border-color: var(--line-gold);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-3px);
+}
+
+.quoteWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(194, 164, 108, 0.12);
+  color: var(--gold);
+  margin-bottom: 22px;
+}
+
+.text {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.08rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--wine);
+  margin: 0 0 28px;
+  flex: 1;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.divider {
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+  transition: width 0.5s var(--ease), opacity 0.45s var(--ease);
+}
+
+.card:hover .divider {
+  width: 48px;
+  opacity: 0.9;
+}
+
+.name {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  opacity: 0.8;
+  margin: 0;
+}
+
+.note {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.9;
+  margin: 44px 0 0;
+  text-align: center;
+}
+
+.revealed .card {
+  animation: revealUp 0.9s var(--ease) both;
+  animation-delay: calc(0.08s * var(--i) + 0.12s);
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .card {
+    padding: 32px 28px 30px;
+  }
+
+  .text {
+    font-size: 1.04rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 16px;
+  }
+
+  .card {
+    padding: 28px 22px 26px;
+  }
+
+  .quoteWrap {
+    width: 34px;
+    height: 34px;
+    margin-bottom: 18px;
+  }
+
+  .note {
+    margin-top: 34px;
+  }
+}

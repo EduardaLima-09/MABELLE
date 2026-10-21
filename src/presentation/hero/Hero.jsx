@@ -9,18 +9,35 @@ function Hero() {
         style={{ backgroundImage: `url(${heroBg})` }}
         aria-hidden="true"
       />
-      <div className={styles.heroContent}>
-        <h1 className={styles.title}>MAISON</h1>
-        <p className={styles.slogan}>Seu Cabelo. Sua Coroa.</p>
-        <div className={styles.divider} />
-        <p className={styles.description}>
-          Peças exclusivas de wigs, laces e cabelos orgânicos, selecionadas
-          para realçar a sua beleza natural com elegância e sofisticação.
-        </p>
-        <a href="#produtos" className={styles.cta}>
-          Explorar coleção
-        </a>
+      <span className={styles.scrim} aria-hidden="true" />
+
+      <div className={styles.inner}>
+        <div className={styles.copy}>
+          <p className={styles.eyebrow}>MABELLE · Beleza · Estilo · Elegância</p>
+
+          <h1 className={styles.title}>
+            Sua beleza,
+            <br />
+            sua assinatura.
+          </h1>
+
+          <span className={styles.rule} aria-hidden="true" />
+
+          <p className={styles.text}>
+            Wigs, lace front, cabelo humano e acessórios selecionados para
+            quem entende que elegância é detalhe. Uma curadoria feita para
+            transformar o cuidado em estilo.
+          </p>
+
+          <div className={styles.actions}>
+            <a href="#produtos" className={styles.cta}>
+              Descobrir coleção
+            </a>
+          </div>
+        </div>
       </div>
+
+      <p className={styles.caption}>Linha wig &amp; lace front</p>
     </section>
   )
 }

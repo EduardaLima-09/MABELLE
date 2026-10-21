@@ -14,13 +14,13 @@ export const products = [
   {
     id: 3,
     name: 'Bundle Orgânico Noir',
-    category: 'Cabelos & Bundles',
+    category: 'Cabelo',
     price: 890,
   },
   {
     id: 4,
     name: 'Bundle Cacheado Caramelo',
-    category: 'Cabelos & Bundles',
+    category: 'Cabelo',
     price: 790,
   },
   {
@@ -31,10 +31,10 @@ export const products = [
   },
   {
     id: 6,
-    name: 'Escova Premium Maison',
+    name: 'Escova Premium Mabelle',
     category: 'Acessórios',
     price: 150,
   },
 ]
 
-export const categories = ['Wigs & Laces', 'Cabelos & Bundles', 'Acessórios']
+export const categories = ['Wigs & Laces', 'Cabelo', 'Acessórios']

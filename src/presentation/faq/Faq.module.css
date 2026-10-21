@@ -1,0 +1,139 @@
+.section {
+  background: var(--cream);
+  padding: var(--section-pad) 24px;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.list {
+  text-align: left;
+  border-top: 1px solid var(--line);
+}
+
+.item {
+  border-bottom: 1px solid var(--line);
+  transition: background 0.4s var(--ease);
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.questionHeading {
+  margin: 0;
+  font-weight: inherit;
+}
+
+.question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: none;
+  border: none;
+  padding: 24px 2px;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+}
+
+.questionText {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+  font-weight: 400;
+  color: var(--wine);
+  transition: color 0.35s var(--ease);
+}
+
+.question:hover .questionText {
+  color: var(--burgundy);
+}
+
+.question:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  color: var(--gold);
+  transition: transform 0.4s var(--ease);
+}
+
+.icon line {
+  transition: opacity 0.3s var(--ease);
+}
+
+.iconOpen {
+  transform: rotate(135deg);
+}
+
+.iconOpen line:first-child {
+  opacity: 0;
+}
+
+.answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.answerText {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--burgundy);
+  margin: 0;
+  padding: 0 44px 26px 2px;
+  max-width: 660px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.4s var(--ease) 0.05s, transform 0.4s var(--ease) 0.05s;
+}
+
+.answerOpen .answerText {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 64px 20px;
+  }
+
+  .question {
+    padding: 20px 0;
+    gap: 16px;
+  }
+
+  .answerText {
+    padding: 0 24px 22px 0;
+    font-size: 0.88rem;
+  }
+}

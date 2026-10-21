@@ -1,12 +1,12 @@
 .section {
-  background: var(--off-white);
-  padding: 120px 24px 100px;
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  background: var(--cream);
+  padding: var(--section-pad) 24px;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
 }
 
 .hidden {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(22px);
 }
 
 .revealed {
@@ -14,77 +14,313 @@
   transform: translateY(0);
 }
 
-.content {
-  max-width: 900px;
+.inner {
+  max-width: var(--container);
   margin: 0 auto;
-  text-align: center;
 }
 
-.overline {
+.main {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(48px, 6vw, 96px);
+  align-items: center;
+}
+
+.copy {
+  max-width: 560px;
+}
+
+.eyebrow {
   font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 5px;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.4em;
   text-transform: uppercase;
   color: var(--gold);
-  margin: 0 0 16px;
+  margin: 0 0 22px;
+  padding-left: 0.4em;
+  opacity: 0;
 }
 
 .title {
   font-family: var(--font-heading);
-  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3.1rem);
   font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: 0.01em;
   color: var(--wine);
-  margin: 0 0 24px;
-  letter-spacing: 1px;
+  margin: 0;
+  opacity: 0;
 }
 
-.text {
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 300;
-  line-height: 1.9;
+.rule {
+  display: block;
+  width: 52px;
+  height: 1px;
+  background: var(--gold);
+  margin: 28px 0;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.lead {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 400;
+  line-height: 1.5;
   color: var(--burgundy);
-  margin: 0 auto 64px;
-  max-width: 720px;
+  margin: 0 0 30px;
+  opacity: 0;
+}
+
+.texts p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 2;
+  color: var(--burgundy);
+  margin: 0 0 18px;
+  opacity: 0;
+}
+
+.texts p:last-child {
+  margin-bottom: 0;
+}
+
+.tagline {
+  font-family: var(--font-body);
+  font-size: 0.54rem;
+  font-weight: 300;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.85;
+  margin: 36px 0 0;
+  padding-left: 0.1em;
+  opacity: 0;
+}
+
+.visual {
+  position: relative;
+  justify-self: end;
+  width: 100%;
+  max-width: 460px;
+}
+
+.frame {
+  position: absolute;
+  inset: 18px -18px -18px 18px;
+  border: 1px solid var(--line-gold);
+  opacity: 0;
+}
+
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 22%;
+  opacity: 0;
 }
 
 .highlights {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  text-align: left;
+  margin-top: clamp(56px, 7vw, 88px);
+  border-top: 1px solid var(--line);
 }
 
 .highlight {
-  border-top: 1px solid rgba(197, 164, 109, 0.4);
-  padding-top: 24px;
+  padding: 34px 34px 8px 0;
+}
+
+.highlight + .highlight {
+  border-left: 1px solid var(--line);
+  padding-left: 34px;
+}
+
+.number {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  color: var(--gold);
+  margin-bottom: 16px;
 }
 
 .highlightTitle {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.35rem;
+  font-weight: 400;
   color: var(--wine);
-  margin: 0 0 12px;
+  margin: 0 0 8px;
 }
 
 .highlightText {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.85;
   color: var(--burgundy);
   margin: 0;
 }
 
-@media (max-width: 768px) {
+/* Revelação */
+.revealed .eyebrow {
+  animation: revealUp 0.9s var(--ease) 0.05s both;
+}
+
+.revealed .title {
+  animation: revealUp 1s var(--ease) 0.12s both;
+}
+
+.revealed .rule {
+  animation: revealLine 1s var(--ease) 0.28s both;
+}
+
+.revealed .lead {
+  animation: revealUp 1s var(--ease) 0.36s both;
+}
+
+.revealed .texts p {
+  animation: revealUp 1s var(--ease) both;
+}
+
+.revealed .texts p:nth-child(1) {
+  animation-delay: 0.46s;
+}
+
+.revealed .texts p:nth-child(2) {
+  animation-delay: 0.56s;
+}
+
+.revealed .texts p:nth-child(3) {
+  animation-delay: 0.66s;
+}
+
+.revealed .tagline {
+  animation: revealUp 0.9s var(--ease) 0.78s both;
+}
+
+.revealed .image {
+  animation: visualIn 1.4s var(--ease) 0.2s both;
+}
+
+.revealed .frame {
+  animation: frameIn 1.2s var(--ease) 0.34s both;
+}
+
+.revealed .highlight {
+  animation: revealUp 0.9s var(--ease) both;
+  animation-delay: calc(0.1s * var(--i) + 0.15s);
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealLine {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes visualIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes frameIn {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .copy {
+    max-width: 640px;
+  }
+
+  .visual {
+    justify-self: start;
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 640px) {
   .section {
-    padding: 80px 20px 64px;
+    padding: 64px 20px;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 7vw, 2.3rem);
+  }
+
+  .rule {
+    margin: 22px 0;
+  }
+
+  .lead {
+    margin-bottom: 24px;
+  }
+
+  .texts p {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+
+  .tagline {
+    margin-top: 28px;
+  }
+
+  .frame {
+    inset: 12px -12px -12px 12px;
   }
 
   .highlights {
     grid-template-columns: 1fr;
-    gap: 28px;
+    margin-top: 48px;
+  }
+
+  .highlight {
+    padding: 24px 0 22px;
+  }
+
+  .highlight + .highlight {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
   }
 }

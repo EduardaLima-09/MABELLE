@@ -1,7 +1,10 @@
-import { useState, useMemo } from 'react'
+import { useCallback, useState, useMemo } from 'react'
 import Navbar from './presentation/navbar/Navbar.jsx'
 import Hero from './presentation/hero/Hero.jsx'
 import Sobre from './presentation/sobre/Sobre.jsx'
+import Depoimentos from './presentation/depoimentos/Depoimentos.jsx'
+import Faq from './presentation/faq/Faq.jsx'
+import Queridinhos from './presentation/queridinhos/Queridinhos.jsx'
 import CategorySection from './components/CategorySection/CategorySection.jsx'
 import ProductFilters from './components/ProductFilters/ProductFilters.jsx'
 import ProductModal from './components/ProductModal/ProductModal.jsx'
@@ -22,22 +25,26 @@ function App() {
   const [selectedTexture, setSelectedTexture] = useState('')
   const [sortBy, setSortBy] = useState('default')
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
-  const [showWelcome, setShowWelcome] = useState(() => {
-    try {
-      return !localStorage.getItem('maison-welcome-seen')
-    } catch {
-      return true
-    }
-  })
+  const [showWelcome, setShowWelcome] = useState(true)
 
-  const closeWelcome = () => {
+  const closeWelcome = useCallback(() => {
     setShowWelcome(false)
-    try {
-      localStorage.setItem('maison-welcome-seen', '1')
-    } catch {
-      // storage unavailable
-    }
-  }
+  }, [])
+
+  const exploreWelcome = useCallback(() => {
+    closeWelcome()
+    const prefersReducedMotion = window.matchMedia?.(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById('produtos')
+        ?.scrollIntoView({
+          behavior: prefersReducedMotion ? 'auto' : 'smooth',
+          block: 'start',
+        })
+    })
+  }, [closeWelcome])
 
   const filteredCategories = useMemo(() => {
     return categories
@@ -74,34 +81,39 @@ function App() {
 
   return (
     <div className={styles.main}>
-      {showWelcome && <WelcomeModal onClose={closeWelcome} />}
       <Navbar totalItems={cart.totalItems} onOpenCart={cart.openCart} />
       <Hero />
       <Sobre />
-      <ProductFilters
-        categories={categories}
-        search={search}
-        onSearchChange={setSearch}
-        selectedCategory={selectedCategory}
-        onCategoryChange={setSelectedCategory}
-        selectedTexture={selectedTexture}
-        onTextureChange={setSelectedTexture}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        showFavoritesOnly={showFavoritesOnly}
-        onToggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
-        onClear={clearFilters}
-      />
-      {filteredCategories.map((category) => (
-        <CategorySection
-          key={category.id}
-          category={category}
-          onAddToCart={cart.addToCart}
-          onViewDetails={handleViewDetails}
-          onToggleFavorite={toggleFavorite}
-          isFavorite={isFavorite}
+      <Queridinhos onAddToCart={cart.addToCart} />
+      <section id="produtos" className={styles.catalog}>
+        <ProductFilters
+          categories={categories}
+          search={search}
+          onSearchChange={setSearch}
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+          selectedTexture={selectedTexture}
+          onTextureChange={setSelectedTexture}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+          showFavoritesOnly={showFavoritesOnly}
+          onToggleFavorites={() => setShowFavoritesOnly(!showFavoritesOnly)}
+          onClear={clearFilters}
         />
-      ))}
+        {filteredCategories.map((category, index) => (
+          <CategorySection
+            key={category.id}
+            category={category}
+            index={index}
+            onAddToCart={cart.addToCart}
+            onViewDetails={handleViewDetails}
+            onToggleFavorite={toggleFavorite}
+            isFavorite={isFavorite}
+          />
+        ))}
+      </section>
+      <Depoimentos />
+      <Faq />
       {selectedProduct && (
         <ProductModal
           product={selectedProduct}
@@ -120,6 +132,9 @@ function App() {
         onRemove={cart.removeItem}
       />
       <Footer />
+      {showWelcome && (
+        <WelcomeModal onClose={closeWelcome} onExplore={exploreWelcome} />
+      )}
     </div>
   )
 }

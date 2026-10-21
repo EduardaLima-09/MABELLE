@@ -1,11 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap');
 
 :root {
-  --wine: #32151d;
-  --burgundy: #722f40;
-  --nude: #e9d9cc;
-  --off-white: #faf6f0;
-  --gold: #c5a46d;
+  /* Paleta editorial */
+  --wine: #2b1018;
+  --wine-soft: #3d1b26;
+  --burgundy: #6f2c3e;
+  --nude: #e7d7c9;
+  --cream: #f4ede4;
+  --off-white: #fbf8f4;
+  --ink: #241017;
+
+  /* Detalhes e linhas */
+  --gold: #c2a46c;
+  --line: rgba(36, 16, 23, 0.12);
+  --line-soft: rgba(36, 16, 23, 0.07);
+  --line-gold: rgba(194, 164, 108, 0.42);
+  --line-inverse: rgba(251, 248, 244, 0.16);
+
+  /* Sombras discretas */
+  --shadow-soft: 0 8px 26px rgba(43, 16, 24, 0.05);
+  --shadow-lift: 0 16px 40px rgba(43, 16, 24, 0.09);
+
+  /* Métricas */
+  --container: 1180px;
+  --nav-h: 76px;
+  --section-pad: clamp(72px, 9vw, 128px);
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Jost', 'Segoe UI', sans-serif;
@@ -13,6 +33,7 @@
 
 html {
   font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 html,
@@ -23,10 +44,69 @@ body {
 
 body {
   background: var(--off-white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--wine);
+  color: var(--off-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
 
 section[id] {
-  scroll-margin-top: 72px;
+  scroll-margin-top: calc(var(--nav-h) + 16px);
+}
+
+/* Barras de rolagem discretas */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(194, 164, 108, 0.45) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(194, 164, 108, 0.4);
+  border-radius: 8px;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --nav-h: 64px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -37,5 +117,11 @@ section[id] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Garante que conteúdo com animação de entrada nunca fique invisível */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

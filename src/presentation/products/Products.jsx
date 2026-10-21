@@ -3,7 +3,7 @@ import styles from './Products.module.css'
 
 function getCategoryClass(category) {
   if (category === 'Wigs & Laces') return styles.imageWigs
-  if (category === 'Cabelos & Bundles') return styles.imageBundles
+  if (category === 'Cabelo') return styles.imageBundles
   return styles.imageAccessories
 }
 
@@ -19,7 +19,7 @@ function Products() {
     <section id="produtos" className={styles.section}>
       <div className={styles.header}>
         <p className={styles.overline}>Boutique</p>
-        <h2 className={styles.title}>A coleção MAISON</h2>
+        <h2 className={styles.title}>A coleção MABELLE</h2>
         <p className={styles.description}>
           Peças cuidadosamente selecionadas para celebrar a sua beleza.
           Qualidade, elegância e exclusividade em cada detalhe.

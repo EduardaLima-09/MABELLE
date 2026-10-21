@@ -36,8 +36,8 @@ export const categories = [
   },
   {
     id: 'cabelo-humano',
-    title: 'Cabelo Humano',
-    description: 'Bundles e extensões de cabelo 100% humano para volume e comprimento.',
+    title: 'Cabelo',
+    description: 'Cabelo humano e extensões para volume e comprimento.',
     products: [
       { id: 'cabelo-humano-1', name: 'Bundle Elisa 18"', price: 890, description: 'Bundle liso de cabelo humano.', texture: 'liso', length: '18"', color: 'preto', image: img('cabelo-humano/CabeloHumanoElisa.jpg') },
       { id: 'cabelo-humano-2', name: 'Bundle Ester 20"', price: 990, description: 'Bundle cacheado natural.', texture: 'cacheado', length: '20"', color: 'castanho', image: img('cabelo-humano/CabeloHumanoEster.jpg') },
@@ -74,3 +74,18 @@ export const categories = [
     ],
   },
 ]
+
+const featuredSelection = [
+  { id: 'lace-front-3', badge: 'Destaque' },
+  { id: 'wigs-2', badge: 'Destaque' },
+  { id: 'cabelo-humano-4', badge: 'Mais escolhido' },
+]
+
+export const featuredProducts = featuredSelection
+  .map(({ id, badge }) => {
+    const category = categories.find((cat) => cat.products.some((p) => p.id === id))
+    const product = category?.products.find((p) => p.id === id)
+    if (!category || !product) return null
+    return { ...product, categoryTitle: category.title, badge }
+  })
+  .filter(Boolean)

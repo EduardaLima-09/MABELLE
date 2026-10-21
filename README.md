@@ -1,21 +1,54 @@
-<<<<<<< HEAD
-# React + Vite
+# MABELLE
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Loja de beleza especializada em perucas, laces, cabelo humano, rabos de cavalo e acessórios.
 
-Currently, two official plugins are available:
+Loja demonstrativa (projeto acadêmico). Todos os produtos, preços e dados comerciais são fictícios.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Identidade visual
 
-## React Compiler
+Direção editorial de luxo, definida por tokens globais em `src/shared/theme.css`:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Paleta: vinho profundo (`#2b1018`), vinho bordô (`#6f2c3e`), nude (`#e7d7c9`), creme (`#f4ede4`), off-white (`#fbf8f4`), ouro suave (`#c2a46c`) e tinta escura (`#241017`).
+- Tipografia: Cormorant Garamond (títulos) e Jost (textos).
+- Linhas divisórias finas, bordas discretas, sombras suaves e bastante espaço em branco.
+- Logotipo: `src/assets/LogoMabelleWordmark.png` (wordmark extraído de `src/assets/LogoMabelle.png`).
 
-## Expanding the Oxlint configuration
+## Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
-=======
-# MAISON
-Loja de beleza especializada em perucas, laces e cabelos.
->>>>>>> 1d5cb0da61e3e94de90fa04861a4e053ec4ec844
+- React 19 + Vite
+- JavaScript com CSS Modules
+- Oxlint (lint)
+
+## Scripts
+
+```bash
+npm run dev      # servidor de desenvolvimento
+npm run build    # build de produção em dist/
+npm run preview  # pré-visualização do build
+npm run lint     # análise estática
+```
+
+## Estrutura
+
+```
+src/
+  assets/        imagens da marca e catálogo de produtos
+  components/    componentes reutilizáveis (carrinho, modais, filtros, títulos de seção, rodapé)
+  data/          dados do catálogo (produtos e destaques)
+  model/         dados legados de demonstração
+  presentation/  seções da página (hero, sobre, queridinhos, FAQ, depoimentos, navbar)
+  shared/        tema global (variáveis CSS e fontes)
+  viewmodel/     hooks de estado (carrinho, favoritos, animação de entrada)
+```
+
+## Seções
+
+- Hero editorial de campanha
+- Sobre a MABELLE
+- Os queridinhos da MABELLE (destaques em destaque)
+- Catálogo completo com filtros, favoritos e ordenação
+- Depoimentos (marcados como ilustrativos)
+- Dúvidas frequentes
+- Card de boas-vindas exibido a cada carregamento da página
+- Rodapé com categorias, contato e avisos de dados fictícios
+

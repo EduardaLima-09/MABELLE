@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const STORAGE_KEY = 'maison-favorites'
+const STORAGE_KEY = 'mabelle-favorites'
 
 export function useFavorites() {
   const [favorites, setFavorites] = useState(() => {
