@@ -20,7 +20,7 @@ function Footer() {
           <div className={styles.brand}>
             <img src={logo} alt="MABELLE" className={styles.logoImg} />
             <p className={styles.slogan}>Seu cabelo. Sua Coroa.</p>
-            <p className={styles.tagline}>Beauty · Style · Elegance</p>
+            <p className={styles.tagline}>MABELLE · Beleza · Estilo · Elegância</p>
           </div>
 
           <div className={styles.links}>
@@ -36,8 +36,8 @@ function Footer() {
 
           <div className={styles.contact}>
             <h4>Contato</h4>
-            <p>@mabelle.boutique (Instagram demonstrativo)</p>
-            <p>contato@mabelle.com (fictício)</p>
+            <p>@mabelle.boutique</p>
+            <p>contato@mabelle.com</p>
           </div>
         </div>
 

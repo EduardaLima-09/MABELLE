@@ -10,9 +10,11 @@ import ProductFilters from './components/ProductFilters/ProductFilters.jsx'
 import ProductModal from './components/ProductModal/ProductModal.jsx'
 import WelcomeModal from './components/WelcomeModal/WelcomeModal.jsx'
 import Cart from './components/Cart/Cart.jsx'
+import Checkout from './components/Checkout/Checkout.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import { useCart } from './viewmodel/useCart.js'
 import { useFavorites } from './viewmodel/useFavorites.js'
+import { canOpenCheckout } from './model/checkout.js'
 import { categories } from './data/products.js'
 import styles from './App.module.css'
 
@@ -26,6 +28,7 @@ function App() {
   const [sortBy, setSortBy] = useState('default')
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
   const [showWelcome, setShowWelcome] = useState(true)
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
 
   const closeWelcome = useCallback(() => {
     setShowWelcome(false)
@@ -79,6 +82,30 @@ function App() {
     setSelectedProduct({ ...product, categoryTitle })
   }
 
+  const openCheckout = useCallback(() => {
+    if (!canOpenCheckout(cart.items)) return
+
+    cart.closeCart()
+    setIsCheckoutOpen(true)
+  }, [cart])
+
+  const closeCheckout = useCallback(() => {
+    setIsCheckoutOpen(false)
+  }, [])
+
+  const backToStore = useCallback(() => {
+    setIsCheckoutOpen(false)
+    const prefersReducedMotion = window.matchMedia?.(
+      '(prefers-reduced-motion: reduce)'
+    ).matches
+    window.requestAnimationFrame(() => {
+      document.getElementById('produtos')?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+        block: 'start',
+      })
+    })
+  }, [])
+
   return (
     <div className={styles.main}>
       <Navbar totalItems={cart.totalItems} onOpenCart={cart.openCart} />
@@ -130,7 +157,15 @@ function App() {
         onIncrease={cart.increaseQuantity}
         onDecrease={cart.decreaseQuantity}
         onRemove={cart.removeItem}
+        onCheckout={openCheckout}
       />
+      {isCheckoutOpen && (
+        <Checkout
+          items={cart.items}
+          onClose={closeCheckout}
+          onBackToStore={backToStore}
+        />
+      )}
       <Footer />
       {showWelcome && (
         <WelcomeModal onClose={closeWelcome} onExplore={exploreWelcome} />

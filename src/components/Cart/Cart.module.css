@@ -249,6 +249,49 @@
   margin: 0;
 }
 
+.notice {
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  color: var(--burgundy);
+  background: rgba(111, 44, 62, 0.08);
+  border-left: 2px solid var(--burgundy);
+  border-radius: 3px;
+  padding: 10px 12px;
+  margin: 14px 0 0;
+}
+
+.checkoutBtn {
+  width: 100%;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--wine);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background 0.35s var(--ease), color 0.35s var(--ease),
+    border-color 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+.checkoutBtn:hover {
+  background: var(--wine);
+  border-color: var(--wine);
+  color: var(--off-white);
+  transform: translateY(-2px);
+}
+
+.checkoutBtn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 @keyframes itemIn {
   from {
     opacity: 0;

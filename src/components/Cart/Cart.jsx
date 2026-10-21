@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { canOpenCheckout, EMPTY_CART_MESSAGE } from '../../model/checkout.js'
 import styles from './Cart.module.css'
 
 function formatPrice(value) {
@@ -7,7 +9,43 @@ function formatPrice(value) {
   })
 }
 
-function Cart({ isOpen, items, totalPrice, onClose, onIncrease, onDecrease, onRemove }) {
+function Cart({
+  isOpen,
+  items,
+  totalPrice,
+  onClose,
+  onIncrease,
+  onDecrease,
+  onRemove,
+  onCheckout,
+}) {
+  const [notice, setNotice] = useState('')
+
+  const handleCheckout = () => {
+    if (!canOpenCheckout(items)) {
+      setNotice(EMPTY_CART_MESSAGE)
+      return
+    }
+
+    setNotice('')
+    onCheckout()
+  }
+
+  const handleIncrease = (id) => {
+    setNotice('')
+    onIncrease(id)
+  }
+
+  const handleDecrease = (id) => {
+    setNotice('')
+    onDecrease(id)
+  }
+
+  const handleRemove = (id) => {
+    setNotice('')
+    onRemove(id)
+  }
+
   return (
     <>
       <div
@@ -37,18 +75,18 @@ function Cart({ isOpen, items, totalPrice, onClose, onIncrease, onDecrease, onRe
                 </div>
                 <div className={styles.itemRight}>
                   <div className={styles.quantity}>
-                    <button className={styles.qtyBtn} onClick={() => onDecrease(item.id)}>
+                    <button className={styles.qtyBtn} onClick={() => handleDecrease(item.id)}>
                       −
                     </button>
                     <span className={styles.qtyValue}>{item.quantity}</span>
-                    <button className={styles.qtyBtn} onClick={() => onIncrease(item.id)}>
+                    <button className={styles.qtyBtn} onClick={() => handleIncrease(item.id)}>
                       +
                     </button>
                   </div>
                   <p className={styles.subtotal}>
                     {formatPrice(item.price * item.quantity)}
                   </p>
-                  <button className={styles.removeBtn} onClick={() => onRemove(item.id)}>
+                  <button className={styles.removeBtn} onClick={() => handleRemove(item.id)}>
                     Remover
                   </button>
                 </div>
@@ -57,14 +95,24 @@ function Cart({ isOpen, items, totalPrice, onClose, onIncrease, onDecrease, onRe
           )}
         </div>
 
-        {items.length > 0 && (
-          <div className={styles.footer}>
+        <div className={styles.footer}>
+          {items.length > 0 && (
             <div className={styles.total}>
               <span className={styles.totalLabel}>Total</span>
               <span className={styles.totalValue}>{formatPrice(totalPrice)}</span>
             </div>
-          </div>
-        )}
+          )}
+
+          {notice && (
+            <p className={styles.notice} role="status">
+              {notice}
+            </p>
+          )}
+
+          <button type="button" className={styles.checkoutBtn} onClick={handleCheckout}>
+            Finalizar compra
+          </button>
+        </div>
       </aside>
     </>
   )
