@@ -31,7 +31,7 @@ function Hero() {
 
           <div className={styles.actions}>
             <a href="#produtos" className={styles.cta}>
-              Descobrir coleção
+              Descobrir mais
             </a>
           </div>
         </div>

@@ -15,7 +15,7 @@
 }
 
 .grid {
-  max-width: 1180px;
+  max-width: 1500px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -44,8 +44,8 @@
 .media {
   position: relative;
   flex: 0 0 38%;
-  max-width: 170px;
-  width: 170px;
+  max-width: 190px;
+  width: 190px;
   align-self: flex-start;
   aspect-ratio: 1 / 1;
   overflow: hidden;
@@ -75,7 +75,7 @@
   border: 1px solid var(--line-gold);
   color: var(--gold);
   font-family: var(--font-body);
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -96,7 +96,7 @@
 
 .category {
   font-family: var(--font-body);
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.26em;
   text-transform: uppercase;
@@ -106,7 +106,7 @@
 
 .name {
   font-family: var(--font-heading);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--wine);
   margin: 0;

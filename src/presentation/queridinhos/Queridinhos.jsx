@@ -28,7 +28,7 @@ function Queridinhos() {
 
       <div className={styles.footer}>
         <a href="#produtos" className={styles.collectionLink}>
-          Ver toda a coleção
+          Ver todos os produtos
         </a>
       </div>
     </section>

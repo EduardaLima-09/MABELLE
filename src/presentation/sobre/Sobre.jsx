@@ -49,7 +49,7 @@ function Sobre() {
                 individualidade de cada pessoa.
               </p>
               <p>
-                Somos uma boutique especializada em cabelos e acessórios, com
+                Somos uma loja especializada em cabelos e acessórios, com
                 uma curadoria pensada para quem busca qualidade, estilo e
                 praticidade.
               </p>
@@ -60,7 +60,7 @@ function Sobre() {
               </p>
             </div>
 
-            <p className={styles.tagline}>Beauty · Style · Elegance</p>
+            <p className={styles.tagline}>Beleza · Estilo · Elegância</p>
           </div>
 
           <div className={styles.visual}>
