@@ -27,48 +27,46 @@ export const BASE_IMAGE_RELATIVE_PATH =
   'src/assets/produtos/lace-front/LaceFrontLivia.jpg'
 
 /*
- * Regras de segmentação do cabelo (coordenadas normalizadas 0..1).
- * O fundo é estimado a partir da borda da própria imagem; a pele do rosto e
- * do peito é excluída pelas formas abaixo, e o restante é filtrado por cor.
+ * Regras de segmentação do cabelo.
+ *
+ * Valores calibrados com os pixels reais da foto-base (fixture
+ * tests/fixtures/livia-quarter.json) e verificados por métricas nos testes:
+ * - fundo bege: saturação 0.21–0.27 e valor 0.75–0.85 (mais claro que o cabelo);
+ * - cabelo dourado: saturação 0.48–0.71, valor ≤ 0.74, matiz 18°–46°;
+ * - pele do rosto/peito: excluída pelas formas abaixo (matiz≈ 20°).
  */
 export const FACE_ELLIPSE = { cx: 0.5, cy: 0.27, rx: 0.12, ry: 0.15 }
 export const CENTER_BODY = { x0: 0.365, y0: 0.32, x1: 0.635, y1: 1 }
 
 export const HAIR_GATE = {
-  minGB: 40, // dourado do cabelo: G - B
-  minLuma: 125, // luminância mínima (descarta pele em sombra)
-  maxBgDist: 40, // distância máxima à cor de fundo estimada
-  borderSampleStep: 4, // passo da amostragem da borda
+  minSat: 0.42, // saturação mínima (descarta fundo bege)
+  maxVal: 0.74, // valor máximo (fundo é mais claro que o cabelo)
+  minHue: 18, // matiz quente (descarta roupa vinho)
+  maxHue: 46,
+  minGB: 28, // G - B mínimo (descarta pele do ombro)
+  minComponentFraction: 0.001, // descarta speckles < 0.1% dos pixels
 }
 
 export function luminance(r, g, b) {
   return 0.299 * r + 0.587 * g + 0.114 * b
 }
 
-function borderAverage(pixels, width, height, stride, step) {
-  let r = 0
-  let g = 0
-  let b = 0
-  let count = 0
-  for (let x = 0; x < width; x += step) {
-    for (const y of [0, height - 1]) {
-      const p = (y * width + x) * stride
-      r += pixels[p]
-      g += pixels[p + 1]
-      b += pixels[p + 2]
-      count++
-    }
+function toHsv(r, g, b) {
+  const rn = r / 255
+  const gn = g / 255
+  const bn = b / 255
+  const max = Math.max(rn, gn, bn)
+  const min = Math.min(rn, gn, bn)
+  const d = max - min
+  let hue = 0
+  if (d > 0) {
+    if (max === rn) hue = ((gn - bn) / d) % 6
+    else if (max === gn) hue = (bn - rn) / d + 2
+    else hue = (rn - gn) / d + 4
+    hue *= 60
+    if (hue < 0) hue += 360
   }
-  for (let y = 0; y < height; y += step) {
-    for (const x of [0, width - 1]) {
-      const p = (y * width + x) * stride
-      r += pixels[p]
-      g += pixels[p + 1]
-      b += pixels[p + 2]
-      count++
-    }
-  }
-  return [r / count, g / count, b / count]
+  return { hue, sat: max === 0 ? 0 : d / max, val: max }
 }
 
 function inFaceEllipse(nx, ny) {
@@ -93,16 +91,9 @@ export function isProtected(nx, ny) {
 
 /*
  * Constrói a máscara do cabelo (Float32 0..1, um valor por pixel) a partir
- * dos pixels RGB(A) da foto. Passo único, sem dependências externas.
+ * dos pixels RGB(A) da foto. Passo único por pixel, sem dependências.
  */
 export function buildHairMask(pixels, width, height, stride = 3) {
-  const bg = borderAverage(
-    pixels,
-    width,
-    height,
-    stride,
-    HAIR_GATE.borderSampleStep
-  )
   const mask = new Float32Array(width * height)
 
   for (let y = 0; y < height; y++) {
@@ -114,16 +105,62 @@ export function buildHairMask(pixels, width, height, stride = 3) {
       const g = pixels[p + 1]
       const b = pixels[p + 2]
 
-      if (!(r > g && g > b)) continue // só tons quentes (cabelo dourado)
-      if (g - b < HAIR_GATE.minGB) continue // dourado forte, não bege/pele
-      if (luminance(r, g, b) < HAIR_GATE.minLuma) continue // descarta pele em sombra
-      const dr = r - bg[0]
-      const dg = g - bg[1]
-      const db = b - bg[2]
-      if (dr * dr + dg * dg + db * db < HAIR_GATE.maxBgDist ** 2) continue
+      if (!(r > g && g > b)) continue // tons quentes apenas
+      const { hue, sat, val } = toHsv(r, g, b)
+      if (sat < HAIR_GATE.minSat) continue // fundo bege tem saturação baixa
+      if (val > HAIR_GATE.maxVal) continue // fundo é mais claro que o cabelo
+      if (hue < HAIR_GATE.minHue || hue > HAIR_GATE.maxHue) continue
+      if (g - b < HAIR_GATE.minGB) continue // pele do ombro tem G-B menor
       if (isProtected(x / (width - 1), ny)) continue // rosto e peito
 
       mask[i] = 1
+    }
+  }
+  return dropSmallComponents(mask, width, height)
+}
+
+/*
+ * Remove componentes conexos pequenos (speckles de ruído). Mantém apenas
+ * blobs ≥ minComponentFraction dos pixels — no caso da foto-base, as duas
+ * cortinas laterais do cabelo concentram >97% da cobertura.
+ */
+export function dropSmallComponents(mask, width, height, minFraction) {
+  const minSize = Math.max(
+    8,
+    Math.round(width * height * (minFraction ?? HAIR_GATE.minComponentFraction))
+  )
+  const labels = new Int32Array(mask.length).fill(-1)
+  const stack = []
+  let label = 0
+
+  for (let start = 0; start < mask.length; start++) {
+    if (mask[start] <= 0 || labels[start] >= 0) continue
+    label++
+    let size = 0
+    stack.length = 0
+    stack.push(start)
+    labels[start] = label
+    while (stack.length > 0) {
+      const cur = stack.pop()
+      size++
+      const x = cur % width
+      const y = (cur / width) | 0
+      const neighbors = []
+      if (x > 0) neighbors.push(cur - 1)
+      if (x < width - 1) neighbors.push(cur + 1)
+      if (y > 0) neighbors.push(cur - width)
+      if (y < height - 1) neighbors.push(cur + width)
+      for (const nb of neighbors) {
+        if (mask[nb] > 0 && labels[nb] < 0) {
+          labels[nb] = label
+          stack.push(nb)
+        }
+      }
+    }
+    if (size < minSize) {
+      for (let i = 0; i < labels.length; i++) {
+        if (labels[i] === label) mask[i] = 0
+      }
     }
   }
   return mask
