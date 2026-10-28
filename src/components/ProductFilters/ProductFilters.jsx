@@ -30,9 +30,8 @@ function ProductFilters({
 
       <div className={styles.filters}>
         <div
-          className={`${styles.searchField} ${
-            searchFilled ? styles.filled : ''
-          }`}
+          className={`${styles.searchField} ${searchFilled ? styles.filled : ''
+            }`}
         >
           <svg
             className={styles.searchIcon}

@@ -5,6 +5,7 @@ import Sobre from './presentation/sobre/Sobre.jsx'
 import Depoimentos from './presentation/depoimentos/Depoimentos.jsx'
 import Faq from './presentation/faq/Faq.jsx'
 import Queridinhos from './presentation/queridinhos/Queridinhos.jsx'
+import Provador from './presentation/provador/Provador.jsx'
 import CategorySection from './components/CategorySection/CategorySection.jsx'
 import ProductFilters from './components/ProductFilters/ProductFilters.jsx'
 import ProductModal from './components/ProductModal/ProductModal.jsx'
@@ -112,6 +113,11 @@ function App() {
       <Hero />
       <Sobre />
       <Queridinhos onAddToCart={cart.addToCart} />
+      <Provador
+        categories={categories}
+        onAddToCart={cart.addToCart}
+        onViewDetails={handleViewDetails}
+      />
       <section id="produtos" className={styles.catalog}>
         <ProductFilters
           categories={categories}
