@@ -28,5 +28,13 @@ export function useFavorites() {
 
   const isFavorite = (id) => favorites.includes(id)
 
-  return { favorites, toggleFavorite, isFavorite }
+  const clearFavorites = () => setFavorites([])
+
+  return {
+    favorites,
+    count: favorites.length,
+    toggleFavorite,
+    isFavorite,
+    clearFavorites,
+  }
 }

@@ -12,24 +12,41 @@ import ProductModal from './components/ProductModal/ProductModal.jsx'
 import WelcomeModal from './components/WelcomeModal/WelcomeModal.jsx'
 import Cart from './components/Cart/Cart.jsx'
 import Checkout from './components/Checkout/Checkout.jsx'
+import Favorites from './components/Favorites/Favorites.jsx'
 import Footer from './components/Footer/Footer.jsx'
 import { useCart } from './viewmodel/useCart.js'
 import { useFavorites } from './viewmodel/useFavorites.js'
 import { canOpenCheckout } from './model/checkout.js'
+import { resolveFavorites } from './model/favorites.js'
 import { categories } from './data/products.js'
 import styles from './App.module.css'
 
 function App() {
   const cart = useCart()
-  const { favorites, toggleFavorite, isFavorite } = useFavorites()
+  const {
+    favorites,
+    count: favoriteCount,
+    toggleFavorite,
+    isFavorite,
+    clearFavorites,
+  } = useFavorites()
   const [selectedProduct, setSelectedProduct] = useState(null)
   const [search, setSearch] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('')
   const [selectedTexture, setSelectedTexture] = useState('')
   const [sortBy, setSortBy] = useState('default')
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false)
+  const [isFavoritesOpen, setIsFavoritesOpen] = useState(false)
   const [showWelcome, setShowWelcome] = useState(true)
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false)
+
+  const favoriteItems = useMemo(
+    () => resolveFavorites(favorites, categories),
+    [favorites]
+  )
+
+  const openFavorites = useCallback(() => setIsFavoritesOpen(true), [])
+  const closeFavorites = useCallback(() => setIsFavoritesOpen(false), [])
 
   const closeWelcome = useCallback(() => {
     setShowWelcome(false)
@@ -109,7 +126,12 @@ function App() {
 
   return (
     <div className={styles.main}>
-      <Navbar totalItems={cart.totalItems} onOpenCart={cart.openCart} />
+      <Navbar
+        totalItems={cart.totalItems}
+        onOpenCart={cart.openCart}
+        favoriteCount={favoriteCount}
+        onOpenFavorites={openFavorites}
+      />
       <Hero />
       <Sobre />
       <Queridinhos onAddToCart={cart.addToCart} />
@@ -164,6 +186,20 @@ function App() {
         onDecrease={cart.decreaseQuantity}
         onRemove={cart.removeItem}
         onCheckout={openCheckout}
+      />
+      <Favorites
+        isOpen={isFavoritesOpen}
+        items={favoriteItems}
+        onClose={closeFavorites}
+        onRemove={toggleFavorite}
+        onClear={clearFavorites}
+        onViewDetails={(product) => {
+          closeFavorites()
+          setSelectedProduct(product)
+        }}
+        onAddToCart={(product, categoryTitle) =>
+          cart.addToCart(product, categoryTitle)
+        }
       />
       {isCheckoutOpen && (
         <Checkout

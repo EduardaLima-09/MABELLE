@@ -12,7 +12,7 @@ const navLinks = [
   { id: 'acessorios', label: 'Acessórios' },
 ]
 
-function Navbar({ totalItems, onOpenCart }) {
+function Navbar({ totalItems, onOpenCart, favoriteCount = 0, onOpenFavorites }) {
   const [scrolled, setScrolled] = useState(
     () => typeof window !== 'undefined' && window.scrollY > 20
   )
@@ -75,6 +75,34 @@ function Navbar({ totalItems, onOpenCart }) {
           </nav>
 
           <div className={styles.actions}>
+            {onOpenFavorites && (
+              <button
+                type="button"
+                className={styles.favoritesBtn}
+                onClick={onOpenFavorites}
+                aria-label={`Abrir favoritos${favoriteCount > 0 ? `, ${favoriteCount} itens` : ''}`}
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 20.4 4.6 13a4.6 4.6 0 0 1 0-6.5 4.6 4.6 0 0 1 6.5 0l.9.9.9-.9a4.6 4.6 0 0 1 6.5 0 4.6 4.6 0 0 1 0 6.5Z" />
+                </svg>
+                {favoriteCount > 0 && (
+                  <span className={styles.favoritesCount} key={favoriteCount}>
+                    {favoriteCount}
+                  </span>
+                )}
+              </button>
+            )}
+
             <button
               type="button"
               className={styles.cartBtn}

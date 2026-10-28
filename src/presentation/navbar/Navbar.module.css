@@ -132,6 +132,51 @@
   transition: color 0.3s var(--ease), background 0.3s var(--ease);
 }
 
+.favoritesBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  color: var(--nude);
+  background: none;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.favoritesBtn:hover {
+  color: var(--gold);
+  background: rgba(194, 164, 108, 0.1);
+}
+
+.favoritesBtn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.favoritesCount {
+  position: absolute;
+  top: 3px;
+  right: 1px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--wine);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  animation: cartPulse 0.7s var(--ease);
+}
+
 .cartBtn:hover {
   color: var(--gold);
   background: rgba(194, 164, 108, 0.1);
