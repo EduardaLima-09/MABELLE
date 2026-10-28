@@ -5,6 +5,7 @@ import styles from './Navbar.module.css'
 const navLinks = [
   { id: 'sobre', label: 'Sobre' },
   { id: 'provador', label: 'Provador' },
+  { id: 'quiz', label: 'Quiz' },
   { id: 'wigs', label: 'Wigs' },
   { id: 'lace-front', label: 'Lace Front' },
   { id: 'cabelo-humano', label: 'Cabelo' },

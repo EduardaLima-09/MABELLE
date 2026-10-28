@@ -6,6 +6,7 @@ import Depoimentos from './presentation/depoimentos/Depoimentos.jsx'
 import Faq from './presentation/faq/Faq.jsx'
 import Queridinhos from './presentation/queridinhos/Queridinhos.jsx'
 import Provador from './presentation/provador/Provador.jsx'
+import Quiz from './presentation/quiz/Quiz.jsx'
 import CategorySection from './components/CategorySection/CategorySection.jsx'
 import ProductFilters from './components/ProductFilters/ProductFilters.jsx'
 import ProductModal from './components/ProductModal/ProductModal.jsx'
@@ -139,6 +140,13 @@ function App() {
         categories={categories}
         onAddToCart={cart.addToCart}
         onViewDetails={handleViewDetails}
+      />
+      <Quiz
+        categories={categories}
+        onAddToCart={cart.addToCart}
+        onViewDetails={handleViewDetails}
+        onToggleFavorite={toggleFavorite}
+        isFavorite={isFavorite}
       />
       <section id="produtos" className={styles.catalog}>
         <ProductFilters
